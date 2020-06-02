@@ -6,6 +6,8 @@ public class GameScript : MonoBehaviour
 {
     
     public GameObject Object;
+    public GameObject Dirt;
+    public GameObject Spray;
     public Sprite[] ObjectSprites;
 
     private bool clicked = false;
@@ -18,9 +20,17 @@ public class GameScript : MonoBehaviour
 
         Object.GetComponent<SpriteRenderer>().sprite = 
         ObjectSprites[Random.Range(0, ObjectSprites.Length)];
-        Object.AddComponent<PolygonCollider2D>();
+        Object.AddComponent<BoxCollider2D>();
 
-        Object.transform.GetChild(0).gameObject.SetActive(true);
+        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.4f;
+
+        for(int i = 0; i < 20; i++)
+        {
+            float xBound = Random.Range(-boundary.x, boundary.x);
+            float yBound = Random.Range(-boundary.y, boundary.y);
+
+            Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.identity);
+        }
 
     }
 
