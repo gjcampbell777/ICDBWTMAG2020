@@ -6,6 +6,7 @@ public class GameScript : MonoBehaviour
 {
     
     public GameObject Object;
+    public Sprite[] ObjectSprites;
 
     private bool clicked = false;
     private GameObject pickedUpItem;
@@ -14,6 +15,13 @@ public class GameScript : MonoBehaviour
     void Start()
     {
         clicked = false;
+
+        Object.GetComponent<SpriteRenderer>().sprite = 
+        ObjectSprites[Random.Range(0, ObjectSprites.Length)];
+        Object.AddComponent<PolygonCollider2D>();
+
+        Object.transform.GetChild(0).gameObject.SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -34,13 +42,14 @@ public class GameScript : MonoBehaviour
                     pickedUpItem = hit.collider.gameObject;
                     clicked = true;
                     Cursor.visible = false;
+
                 } else if (hit.collider.gameObject.tag == "Item" && clicked) 
                 {
                     clicked = false;
                     Cursor.visible = true;
                 }
              
-                Debug.Log("Clicked " + pickedUpItem.name);
+                //Debug.Log("Clicked " + pickedUpItem.name);
 
             }
 
