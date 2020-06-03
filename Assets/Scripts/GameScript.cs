@@ -7,7 +7,6 @@ public class GameScript : MonoBehaviour
     
     public GameObject Object;
     public GameObject Dirt;
-    public GameObject Spray;
     public Sprite[] ObjectSprites;
 
     private bool clicked = false;

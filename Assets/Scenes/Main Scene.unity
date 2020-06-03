@@ -131,7 +131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 317481905}
   - component: {fileID: 317481904}
-  - component: {fileID: 317481906}
   m_Layer: 0
   m_Name: Object
   m_TagString: Object
@@ -203,18 +202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &317481906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317481903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ee23683ea369cc46acd31c562ef7a65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Object: {fileID: 317481903}
   Dirt: {fileID: 5810670192936853663, guid: 6c319566e78e59d4b848e83cbf6cb8c5, type: 3}
-  Spray: {fileID: 1877631211027388265, guid: cf0e463e9e067dc4680f2204fac7d819, type: 3}
   ObjectSprites:
   - {fileID: 21300000, guid: f86f46202b4377743b719984d5bb8396, type: 3}
 --- !u!4 &1664203757
