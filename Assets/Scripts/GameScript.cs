@@ -17,7 +17,7 @@ public class GameScript : MonoBehaviour
     {
         clicked = false;
 
-        float sizeChange = Random.Range(1f, 2f);
+        float sizeChange = Random.Range(0.75f, 1.5f);
 
         Object.GetComponent<SpriteRenderer>().sprite = 
         ObjectSprites[Random.Range(0, ObjectSprites.Length)];
@@ -25,7 +25,10 @@ public class GameScript : MonoBehaviour
         Object.AddComponent<BoxCollider2D>();
         Object.GetComponent<BoxCollider2D>().size *= sizeChange;
 
-        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.3f;
+        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.45f;
+
+        Destroy(Object.GetComponent<BoxCollider2D>());
+        Object.AddComponent<PolygonCollider2D>();
 
         for(int i = 0; i < Random.Range(10, 30); i++)
         {
