@@ -65,9 +65,12 @@ public class GameScript : MonoBehaviour
         }
 
         if(clicked)
-        {
-            
+        {    
             pickedUpItem.transform.position = mousePos2D;
+        }
+
+        if (GameObject.FindWithTag("Dirt") == null) {
+            //Debug.Log("Beat the game/Next Level");
         }
 
     }
