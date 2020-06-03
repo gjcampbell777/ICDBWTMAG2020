@@ -17,13 +17,17 @@ public class GameScript : MonoBehaviour
     {
         clicked = false;
 
+        float sizeChange = Random.Range(1f, 2f);
+
         Object.GetComponent<SpriteRenderer>().sprite = 
         ObjectSprites[Random.Range(0, ObjectSprites.Length)];
+        Object.transform.localScale *= sizeChange;
         Object.AddComponent<BoxCollider2D>();
+        Object.GetComponent<BoxCollider2D>().size *= sizeChange;
 
-        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.4f;
+        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.3f;
 
-        for(int i = 0; i < 20; i++)
+        for(int i = 0; i < Random.Range(10, 30); i++)
         {
             float xBound = Random.Range(-boundary.x, boundary.x);
             float yBound = Random.Range(-boundary.y, boundary.y);
