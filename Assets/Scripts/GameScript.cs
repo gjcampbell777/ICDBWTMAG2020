@@ -10,33 +10,14 @@ public class GameScript : MonoBehaviour
     public Sprite[] ObjectSprites;
 
     private bool clicked = false;
+    private int objectsPolished = 0;
     private GameObject pickedUpItem;
 
     // Start is called before the first frame update
     void Start()
     {
-        clicked = false;
-
-        float sizeChange = Random.Range(0.75f, 1.5f);
-
-        Object.GetComponent<SpriteRenderer>().sprite = 
-        ObjectSprites[Random.Range(0, ObjectSprites.Length)];
-        Object.transform.localScale *= sizeChange;
-        Object.AddComponent<BoxCollider2D>();
-        Object.GetComponent<BoxCollider2D>().size *= sizeChange;
-
-        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.45f;
-
-        Destroy(Object.GetComponent<BoxCollider2D>());
-        Object.AddComponent<PolygonCollider2D>();
-
-        for(int i = 0; i < Random.Range(10, 30); i++)
-        {
-            float xBound = Random.Range(-boundary.x, boundary.x);
-            float yBound = Random.Range(-boundary.y, boundary.y);
-
-            Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.identity);
-        }
+        
+        Setup();
 
     }
 
@@ -63,6 +44,16 @@ public class GameScript : MonoBehaviour
                 {
                     clicked = false;
                     Cursor.visible = true;
+
+                    if(pickedUpItem.name == "Rag")
+                    {
+                        pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
+                    } else if (pickedUpItem.name == "SprayBottle"){
+                        pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
+                    }
+
+                    pickedUpItem.transform.rotation = Quaternion.identity;
+                    pickedUpItem = null;
                 }
              
                 //Debug.Log("Clicked " + pickedUpItem.name);
@@ -77,8 +68,50 @@ public class GameScript : MonoBehaviour
         }
 
         if (GameObject.FindWithTag("Dirt") == null) {
+            Setup();
+            objectsPolished++;
             //Debug.Log("Beat the game/Next Level");
         }
 
+    }
+
+    void Setup()
+    {
+        clicked = false;
+        Cursor.visible = true;
+        Object.transform.localScale = new Vector3(1, 1, 1);
+        Object.GetComponent<SpriteRenderer>().sprite = null;
+
+        if(pickedUpItem != null && pickedUpItem.name == "Rag")
+        {
+            pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
+            pickedUpItem.transform.rotation = Quaternion.identity;
+        } else if (pickedUpItem != null && pickedUpItem.name == "SprayBottle"){
+            pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
+            pickedUpItem.transform.rotation = Quaternion.identity;
+        }
+
+        pickedUpItem = null;
+
+        float sizeChange = Random.Range(0.75f, 1.5f);
+
+        Object.GetComponent<SpriteRenderer>().sprite = 
+        ObjectSprites[Random.Range(0, ObjectSprites.Length)];
+        Object.transform.localScale *= sizeChange;
+        Object.AddComponent<BoxCollider2D>();
+        Object.GetComponent<BoxCollider2D>().size *= sizeChange;
+
+        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.45f;
+
+        Destroy(Object.GetComponent<BoxCollider2D>());
+        Object.AddComponent<PolygonCollider2D>();
+
+        for(int i = 0; i < Random.Range(10, 30); i++)
+        {
+            float xBound = Random.Range(-boundary.x, boundary.x);
+            float yBound = Random.Range(-boundary.y, boundary.y);
+
+            Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.identity);
+        }
     }
 }
