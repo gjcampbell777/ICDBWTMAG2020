@@ -93,6 +93,7 @@ public class GameScript : MonoBehaviour
         Cursor.visible = true;
         Object.transform.localScale = new Vector3(1, 1, 1);
         Object.GetComponent<SpriteRenderer>().sprite = null;
+        Destroy(Object.GetComponent<PolygonCollider2D>());
 
         if(pickedUpItem != null && pickedUpItem.name == "Rag")
         {
@@ -135,11 +136,10 @@ public class GameScript : MonoBehaviour
 
                 placement = Physics2D.Raycast(new Vector2(xBound, yBound), Vector2.zero);
 
-            }while(placement.collider == null);
+            }while(placement.collider == null || placement.collider.gameObject.tag != "Object");
 
             Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.identity);
         }
 
-        Destroy(Object.GetComponent<PolygonCollider2D>());
     }
 }
