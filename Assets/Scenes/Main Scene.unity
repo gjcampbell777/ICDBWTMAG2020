@@ -423,8 +423,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1739945071}
   - component: {fileID: 1739945070}
-  - component: {fileID: 1739945073}
   - component: {fileID: 1739945072}
+  - component: {fileID: 1739945073}
   m_Layer: 0
   m_Name: SprayBottle
   m_TagString: Item
@@ -593,7 +593,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739945069}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -604,7 +604,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &1885377150
 GameObject:
@@ -616,8 +616,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1885377152}
   - component: {fileID: 1885377151}
-  - component: {fileID: 1885377154}
   - component: {fileID: 1885377153}
+  - component: {fileID: 1885377154}
   m_Layer: 0
   m_Name: Rag
   m_TagString: Item
@@ -810,7 +810,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885377150}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -821,5 +821,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0

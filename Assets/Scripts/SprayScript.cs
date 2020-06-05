@@ -8,7 +8,7 @@ public class SprayScript : MonoBehaviour
 	private int wiped = 0;
 	Color tmp;
 
-	void OnCollisionExit2D(Collision2D other){
+	void OnTriggerExit2D(Collider2D other){
 
 		tmp = this.GetComponent<SpriteRenderer>().color;
 

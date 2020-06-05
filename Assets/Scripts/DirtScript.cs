@@ -10,7 +10,7 @@ public class DirtScript : MonoBehaviour
 	private int wiped = 0;
 	Color tmp;
 
-	void OnCollisionEnter2D(Collision2D other){
+	void OnTriggerEnter2D(Collider2D other){
 
 		if(other.gameObject.name == "SprayBottle" && !sprayed)
 		{
@@ -20,7 +20,7 @@ public class DirtScript : MonoBehaviour
 
 	}
 
-	void OnCollisionExit2D(Collision2D other){
+	void OnTriggerExit2D(Collider2D other){
 
 		tmp = this.GetComponent<SpriteRenderer>().color;
 
