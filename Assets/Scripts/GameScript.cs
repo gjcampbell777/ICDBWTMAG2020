@@ -9,6 +9,7 @@ public class GameScript : MonoBehaviour
     public GameObject Dirt;
     public Sprite[] ObjectSprites;
 
+    private bool clickDown = false;
     private bool clicked = false;
     private int objectsPolished = 0;
     private GameObject pickedUpItem;
@@ -24,12 +25,23 @@ public class GameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            clickDown = true;
+        }
+    }
+
+
+    void FixedUpdate()
+    {
 
     	Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        if (Input.GetMouseButtonDown(0))
+        if (clickDown)
         {
+
+            clickDown = false;
 
 		    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null)
@@ -98,20 +110,30 @@ public class GameScript : MonoBehaviour
         Object.GetComponent<SpriteRenderer>().sprite = 
         ObjectSprites[Random.Range(0, ObjectSprites.Length)];
         Object.transform.localScale *= sizeChange;
-        Object.AddComponent<BoxCollider2D>();
-        Object.GetComponent<BoxCollider2D>().size *= sizeChange;
-
-        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.45f;
 
         Destroy(Object.GetComponent<BoxCollider2D>());
         Object.AddComponent<PolygonCollider2D>();
 
         for(int i = 0; i < Random.Range(10, 30); i++)
         {
-            float xBound = Random.Range(-boundary.x, boundary.x);
-            float yBound = Random.Range(-boundary.y, boundary.y);
+
+            float xBound = 0;
+            float yBound = 0;
+
+            RaycastHit2D placement = Physics2D.Raycast(new Vector2(xBound, yBound), Vector2.zero);
+
+            do{
+
+                xBound = Random.Range(-8, 8);
+                yBound = Random.Range(-5, 5);
+
+                placement = Physics2D.Raycast(new Vector2(xBound, yBound), Vector2.zero);
+
+            }while(placement.collider == null || placement.collider.gameObject.tag != "Object");
 
             Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.identity);
         }
+
+        Destroy(Object.GetComponent<PolygonCollider2D>());
     }
 }
