@@ -111,7 +111,13 @@ public class GameScript : MonoBehaviour
         ObjectSprites[Random.Range(0, ObjectSprites.Length)];
         Object.transform.localScale *= sizeChange;
 
+        Object.AddComponent<BoxCollider2D>();
+        Object.GetComponent<BoxCollider2D>().size *= sizeChange;
+
+        Vector3 boundary = Object.GetComponent<BoxCollider2D>().size * 0.45f;
+
         Destroy(Object.GetComponent<BoxCollider2D>());
+
         Object.AddComponent<PolygonCollider2D>();
 
         for(int i = 0; i < Random.Range(10, 30); i++)
@@ -124,12 +130,12 @@ public class GameScript : MonoBehaviour
 
             do{
 
-                xBound = Random.Range(-8, 8);
-                yBound = Random.Range(-5, 5);
+                xBound = Random.Range(-boundary.x, boundary.x);
+                yBound = Random.Range(-boundary.y, boundary.y);
 
                 placement = Physics2D.Raycast(new Vector2(xBound, yBound), Vector2.zero);
 
-            }while(placement.collider == null || placement.collider.gameObject.tag != "Object");
+            }while(placement.collider == null);
 
             Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.identity);
         }
