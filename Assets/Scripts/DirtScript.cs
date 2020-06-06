@@ -15,7 +15,7 @@ public class DirtScript : MonoBehaviour
 		if(other.gameObject.name == "SprayBottle" && !sprayed)
 		{
 			sprayed = true;
-			Instantiate(Spray, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+			Instantiate(Spray, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.Euler(Random.Range(0, 2)*180, Random.Range(0, 2)*180, 0));
 		}
 
 	}

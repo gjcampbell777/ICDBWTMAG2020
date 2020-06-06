@@ -106,10 +106,11 @@ public class GameScript : MonoBehaviour
 
         pickedUpItem = null;
 
-        float sizeChange = Random.Range(0.75f, 1.5f);
+        float sizeChange = Random.Range(0.9f, 1.25f);
 
         Object.GetComponent<SpriteRenderer>().sprite = 
         ObjectSprites[Random.Range(0, ObjectSprites.Length)];
+        Object.transform.localRotation = Quaternion.Euler(Random.Range(0, 2)*180, Random.Range(0, 2)*180, 0);
         Object.transform.localScale *= sizeChange;
 
         Object.AddComponent<BoxCollider2D>();
@@ -138,7 +139,7 @@ public class GameScript : MonoBehaviour
 
             }while(placement.collider == null || placement.collider.gameObject.tag != "Object");
 
-            Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.identity);
+            Instantiate(Dirt, new Vector2(xBound, yBound), Quaternion.Euler(Random.Range(0, 2)*180, Random.Range(0, 2)*180, 0));
         }
 
     }
