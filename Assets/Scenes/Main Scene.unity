@@ -399,6 +399,12 @@ MonoBehaviour:
   Dirt: {fileID: 5810670192936853663, guid: 6c319566e78e59d4b848e83cbf6cb8c5, type: 3}
   ObjectSprites:
   - {fileID: 21300000, guid: f86f46202b4377743b719984d5bb8396, type: 3}
+  - {fileID: 21300000, guid: bf9a4d7870709424d95eaad944a6363b, type: 3}
+  - {fileID: 21300000, guid: 296dc0ff1a1e17142a72e0b2ec73b5e8, type: 3}
+  - {fileID: 21300000, guid: abc3ee83f0690b641a58c2508214f811, type: 3}
+  - {fileID: 21300000, guid: 020a5375eb8ac2c469231f459eb34c5e, type: 3}
+  - {fileID: 21300000, guid: 33456ea7cbdb49945aac017811868770, type: 3}
+  - {fileID: 21300000, guid: bc428edaf25b2704cadba9917669b383, type: 3}
 --- !u!4 &1664203757
 Transform:
   m_ObjectHideFlags: 0
