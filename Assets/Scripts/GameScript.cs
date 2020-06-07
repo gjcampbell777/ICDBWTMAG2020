@@ -11,7 +11,10 @@ public class GameScript : MonoBehaviour
 
     private bool clickDown = false;
     private bool clicked = false;
+    private bool gameOver = false;
     private int objectsPolished = 0;
+    private int timeLimit = 60;
+    private float timer = 0.0f;
     private GameObject pickedUpItem;
 
     // Start is called before the first frame update
@@ -28,6 +31,17 @@ public class GameScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             clickDown = true;
+        }
+
+        timer += Time.deltaTime;
+        float seconds = timeLimit - (timer % 60);
+
+        //Debug.Log((int)seconds);
+
+        if(seconds < 0 && gameOver == false)
+        {
+            //Debug.Log(objectsPolished);
+            gameOver = true;
         }
     }
 
