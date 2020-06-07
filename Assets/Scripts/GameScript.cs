@@ -89,7 +89,7 @@ public class GameScript : MonoBehaviour
 
         if(seconds < 0 && !gameOver)
         {
-            Debug.Log(objectsPolished);
+            //Debug.Log(objectsPolished);
             gameOver = true;
 
             clicked = false;
@@ -124,22 +124,10 @@ public class GameScript : MonoBehaviour
 
     void Setup()
     {
-        clicked = false;
-        Cursor.visible = true;
+
         Object.transform.localScale = new Vector3(1, 1, 1);
         Object.GetComponent<SpriteRenderer>().sprite = null;
         Destroy(Object.GetComponent<PolygonCollider2D>());
-
-        if(pickedUpItem != null && pickedUpItem.name == "Rag")
-        {
-            pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
-            pickedUpItem.transform.rotation = Quaternion.identity;
-        } else if (pickedUpItem != null && pickedUpItem.name == "SprayBottle"){
-            pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
-            pickedUpItem.transform.rotation = Quaternion.identity;
-        }
-
-        pickedUpItem = null;
 
         float sizeChange = Random.Range(0.9f, 1.25f);
 
