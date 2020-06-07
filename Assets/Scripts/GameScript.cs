@@ -7,9 +7,9 @@ public class GameScript : MonoBehaviour
     
     public GameObject Object;
     public GameObject Dirt;
+    public GameObject Restart;
     public Sprite[] ObjectSprites;
 
-    private bool clickDown = false;
     private bool clicked = false;
     private bool gameOver = false;
     private int objectsPolished = 0;
@@ -28,32 +28,29 @@ public class GameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
-            clickDown = true;
-        }
-    }
 
-
-    void FixedUpdate()
-    {
-
-        timer += Time.deltaTime;
-        float seconds = timeLimit - timer;
-
-        //Debug.Log((int)seconds);
-
-    	Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        if (clickDown)
-        {
-
-            clickDown = false;
-
-		    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                
             if (hit.collider != null)
             {
+
+                if(hit.collider.gameObject.tag == "Restart" && gameOver)
+                {
+
+                    Restart.SetActive(false);
+                    Object.SetActive(true);
+                    Setup();
+                    gameOver = false;
+                    timer = 0.0f;
+                    objectsPolished = 0;
+
+                }
+
                 if (hit.collider.gameObject.tag == "Item" && !clicked && !gameOver)
                 {
                     pickedUpItem = hit.collider.gameObject;
@@ -81,6 +78,21 @@ public class GameScript : MonoBehaviour
             }
 
         }
+
+
+    }
+
+
+    void FixedUpdate()
+    {
+
+        timer += Time.deltaTime;
+        float seconds = timeLimit - timer;
+
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+        //Debug.Log((int)seconds);
 
         if(clicked)
         {    
@@ -110,6 +122,8 @@ public class GameScript : MonoBehaviour
             GameObject[] leftovers = GameObject.FindGameObjectsWithTag("Dirt");
             foreach(GameObject residue in leftovers)
             GameObject.Destroy(residue);
+
+            Restart.SetActive(true);
             
         }
 

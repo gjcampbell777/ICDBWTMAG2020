@@ -7,6 +7,7 @@ TagManager:
   - Object
   - Item
   - Dirt
+  - Restart
   layers:
   - Default
   - TransparentFX
