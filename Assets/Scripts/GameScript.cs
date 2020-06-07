@@ -32,22 +32,16 @@ public class GameScript : MonoBehaviour
         {
             clickDown = true;
         }
-
-        timer += Time.deltaTime;
-        float seconds = timeLimit - (timer % 60);
-
-        //Debug.Log((int)seconds);
-
-        if(seconds < 0 && gameOver == false)
-        {
-            //Debug.Log(objectsPolished);
-            gameOver = true;
-        }
     }
 
 
     void FixedUpdate()
     {
+
+        timer += Time.deltaTime;
+        float seconds = timeLimit - timer;
+
+        //Debug.Log((int)seconds);
 
     	Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -60,7 +54,7 @@ public class GameScript : MonoBehaviour
 		    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.tag == "Item" && !clicked)
+                if (hit.collider.gameObject.tag == "Item" && !clicked && !gameOver)
                 {
                     pickedUpItem = hit.collider.gameObject;
                     clicked = true;
@@ -93,10 +87,37 @@ public class GameScript : MonoBehaviour
             pickedUpItem.transform.position = mousePos2D;
         }
 
-        if (GameObject.FindWithTag("Dirt") == null) {
-            Setup();
+        if(seconds < 0 && !gameOver)
+        {
+            Debug.Log(objectsPolished);
+            gameOver = true;
+
+            clicked = false;
+            Cursor.visible = true;
+
+            if(pickedUpItem != null && pickedUpItem.name == "Rag")
+            {
+                pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
+                pickedUpItem.transform.rotation = Quaternion.identity;
+            } else if (pickedUpItem != null && pickedUpItem.name == "SprayBottle"){
+                pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
+                pickedUpItem.transform.rotation = Quaternion.identity;
+            }
+
+            Object.SetActive(false);
+
+            //Destorys all dirt and spray gameobjects left over that player didn't clean
+            GameObject[] leftovers = GameObject.FindGameObjectsWithTag("Dirt");
+            foreach(GameObject residue in leftovers)
+            GameObject.Destroy(residue);
+            
+        }
+
+        if (!gameOver && GameObject.FindWithTag("Dirt") == null) {
+            
             objectsPolished++;
-            //Debug.Log("Beat the game/Next Level");
+            Setup();
+            //Debug.Log("GameOver");
         }
 
     }
