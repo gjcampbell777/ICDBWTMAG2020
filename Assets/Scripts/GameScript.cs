@@ -36,46 +36,42 @@ public class GameScript : MonoBehaviour
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
                 
-            if (hit.collider != null)
+
+            if(hit.collider != null && hit.collider.gameObject.tag == "Restart" && gameOver)
             {
 
-                if(hit.collider.gameObject.tag == "Restart" && gameOver)
-                {
-
-                    Restart.SetActive(false);
-                    Object.SetActive(true);
-                    Setup();
-                    gameOver = false;
-                    timer = 0.0f;
-                    objectsPolished = 0;
-
-                }
-
-                if (hit.collider.gameObject.tag == "Item" && !clicked && !gameOver)
-                {
-                    pickedUpItem = hit.collider.gameObject;
-                    clicked = true;
-                    Cursor.visible = false;
-
-                } else if (hit.collider.gameObject.tag == "Item" && clicked) 
-                {
-                    clicked = false;
-                    Cursor.visible = true;
-
-                    if(pickedUpItem.name == "Rag")
-                    {
-                        pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
-                    } else if (pickedUpItem.name == "SprayBottle"){
-                        pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
-                    }
-
-                    pickedUpItem.transform.rotation = Quaternion.identity;
-                    pickedUpItem = null;
-                }
-             
-                //Debug.Log("Clicked " + pickedUpItem.name);
+                Restart.SetActive(false);
+                Object.SetActive(true);
+                Setup();
+                gameOver = false;
+                timer = 0.0f;
+                objectsPolished = 0;
 
             }
+
+            if (hit.collider != null && hit.collider.gameObject.tag == "Item" && !clicked && !gameOver)
+            {
+                pickedUpItem = hit.collider.gameObject;
+                clicked = true;
+                Cursor.visible = false;
+
+            } else if (hit.collider != null && clicked) 
+            {
+                clicked = false;
+                Cursor.visible = true;
+
+                if(pickedUpItem.name == "Rag")
+                {
+                    pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
+                } else if (pickedUpItem.name == "SprayBottle"){
+                    pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
+                }
+
+                pickedUpItem.transform.rotation = Quaternion.identity;
+                pickedUpItem = null;
+            }
+         
+            //Debug.Log("Clicked " + pickedUpItem.name);
 
         }
 
