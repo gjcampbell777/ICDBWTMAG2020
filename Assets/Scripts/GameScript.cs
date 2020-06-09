@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameScript : MonoBehaviour
     public GameObject Object;
     public GameObject Dirt;
     public GameObject Restart;
+    public Text Countdown;
     public Sprite[] ObjectSprites;
 
     private bool clicked = false;
@@ -84,6 +86,8 @@ public class GameScript : MonoBehaviour
 
         timer += Time.deltaTime;
         float seconds = timeLimit - timer;
+        int convert = (int)seconds;
+        Countdown.text = convert.ToString();
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
