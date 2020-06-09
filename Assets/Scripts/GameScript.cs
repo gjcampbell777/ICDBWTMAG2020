@@ -17,7 +17,7 @@ public class GameScript : MonoBehaviour
     private bool clicked = false;
     private bool gameOver = false;
     private int objectsPolished = 0;
-    private int timeLimit = 60;
+    private int timeLimit = 30;
     private float timer = 0.0f;
     private GameObject pickedUpItem;
 
