@@ -9,7 +9,9 @@ public class GameScript : MonoBehaviour
     public GameObject Object;
     public GameObject Dirt;
     public GameObject Restart;
+    public GameObject ScoreTitle;
     public Text Countdown;
+    public Text Score;
     public Sprite[] ObjectSprites;
 
     private bool clicked = false;
@@ -64,9 +66,9 @@ public class GameScript : MonoBehaviour
 
                 if(pickedUpItem.name == "Rag")
                 {
-                    pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
+                    pickedUpItem.transform.position = new Vector2(7.25f, 2f);
                 } else if (pickedUpItem.name == "SprayBottle"){
-                    pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
+                    pickedUpItem.transform.position = new Vector2(7.25f, -2f);
                 }
 
                 pickedUpItem.transform.rotation = Quaternion.identity;
@@ -109,13 +111,16 @@ public class GameScript : MonoBehaviour
 
             if(pickedUpItem != null && pickedUpItem.name == "Rag")
             {
-                pickedUpItem.transform.position = new Vector2(7.25f, 2.5f);
+                pickedUpItem.transform.position = new Vector2(7.25f, 2f);
                 pickedUpItem.transform.rotation = Quaternion.identity;
             } else if (pickedUpItem != null && pickedUpItem.name == "SprayBottle"){
-                pickedUpItem.transform.position = new Vector2(7.25f, -2.5f);
+                pickedUpItem.transform.position = new Vector2(7.25f, -2f);
                 pickedUpItem.transform.rotation = Quaternion.identity;
             }
 
+            Score.text = objectsPolished.ToString();
+
+            ScoreTitle.SetActive(true);
             Object.SetActive(false);
 
             //Destorys all dirt and spray gameobjects left over that player didn't clean
@@ -134,10 +139,18 @@ public class GameScript : MonoBehaviour
             //Debug.Log("GameOver");
         }
 
+        if(gameOver)
+        {
+            Countdown.text = "0";
+        }
+
     }
 
     void Setup()
     {
+
+        Score.text = null;
+        ScoreTitle.SetActive(false);
 
         Object.transform.localScale = new Vector3(1, 1, 1);
         Object.GetComponent<SpriteRenderer>().sprite = null;
