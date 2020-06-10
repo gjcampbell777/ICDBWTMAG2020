@@ -6,6 +6,7 @@ using UnityEngine;
 public class DirtScript : MonoBehaviour
 {
     public GameObject Spray;
+    public GameObject Particles;
     public AudioClip[] WipeSounds;
     public AudioClip[] SpraySounds;
 
@@ -26,6 +27,7 @@ public class DirtScript : MonoBehaviour
 			sprayed = true;
 			Instantiate(Spray, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.Euler(Random.Range(0, 2)*180, Random.Range(0, 2)*180, 0));
 			soundPlayer.PlayOneShot(SpraySounds[Random.Range(0, SpraySounds.Length)]);
+			Instantiate(Particles, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
 		}
 
 	}
@@ -46,7 +48,8 @@ public class DirtScript : MonoBehaviour
 			{
 
 				AudioSource.PlayClipAtPoint(WipeSounds[Random.Range(0, WipeSounds.Length)], Camera.main.transform.position );
-				Destroy(this.gameObject);
+				Instantiate(Particles, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+				Destroy(this.gameObject);		
 
 			}
 		

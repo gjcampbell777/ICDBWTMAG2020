@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Spray: {fileID: 1877631211027388265, guid: cf0e463e9e067dc4680f2204fac7d819, type: 3}
+  Particles: {fileID: 3095590803893992786, guid: 3c878b24dc13d434190206d95f9ffafa,
+    type: 3}
   WipeSounds:
   - {fileID: 8300000, guid: 17da7a2184ca8da4fb716428ebf2619c, type: 3}
   - {fileID: 8300000, guid: 34c28207bbad06f438afe38d510705b0, type: 3}
