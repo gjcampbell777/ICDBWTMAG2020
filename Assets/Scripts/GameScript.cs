@@ -12,6 +12,7 @@ public class GameScript : MonoBehaviour
     public GameObject ScoreTitle;
     public Text Countdown;
     public Text Score;
+    public Text HighScore;
     public Sprite[] ObjectSprites;
 
     private bool clicked = false;
@@ -120,6 +121,12 @@ public class GameScript : MonoBehaviour
 
             Score.text = objectsPolished.ToString();
 
+            if(PlayerPrefs.GetInt("HighScore") < objectsPolished)
+            {
+                PlayerPrefs.SetInt("HighScore", objectsPolished);
+                HighScore.text = PlayerPrefs.GetInt("HighScore").ToString();
+            }
+
             ScoreTitle.SetActive(true);
             Object.SetActive(false);
 
@@ -151,6 +158,8 @@ public class GameScript : MonoBehaviour
 
         Score.text = null;
         ScoreTitle.SetActive(false);
+
+        HighScore.text = PlayerPrefs.GetInt("HighScore").ToString();
 
         Object.transform.localScale = new Vector3(1, 1, 1);
         Object.GetComponent<SpriteRenderer>().sprite = null;
