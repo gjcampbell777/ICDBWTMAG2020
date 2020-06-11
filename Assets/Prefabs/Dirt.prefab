@@ -100,7 +100,7 @@ MonoBehaviour:
   Particles: {fileID: 3095590803893992786, guid: 3c878b24dc13d434190206d95f9ffafa,
     type: 3}
   WipeSounds:
-  - {fileID: 8300000, guid: 17da7a2184ca8da4fb716428ebf2619c, type: 3}
+  - {fileID: 8300000, guid: a167474afeffacc4f9574d02889fcdc0, type: 3}
   - {fileID: 8300000, guid: 34c28207bbad06f438afe38d510705b0, type: 3}
   SpraySounds:
   - {fileID: 8300000, guid: bde95274434fb3645b841b33f06344c1, type: 3}
