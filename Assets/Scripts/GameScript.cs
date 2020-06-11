@@ -14,6 +14,7 @@ public class GameScript : MonoBehaviour
     public Text Score;
     public Text HighScore;
     public Sprite[] ObjectSprites;
+    public Texture2D CursorArt;
 
     private bool clicked = false;
     private bool gameOver = false;
@@ -27,6 +28,7 @@ public class GameScript : MonoBehaviour
     {
         
         Setup();
+        Cursor.SetCursor(CursorArt, Vector2.zero, CursorMode.ForceSoftware);
 
     }
 
@@ -58,12 +60,10 @@ public class GameScript : MonoBehaviour
             {
                 pickedUpItem = hit.collider.gameObject;
                 clicked = true;
-                Cursor.visible = false;
 
             } else if (hit.collider != null && clicked) 
             {
                 clicked = false;
-                Cursor.visible = true;
 
                 if(pickedUpItem.name == "Rag")
                 {
@@ -108,7 +108,6 @@ public class GameScript : MonoBehaviour
             gameOver = true;
 
             clicked = false;
-            Cursor.visible = true;
 
             if(pickedUpItem != null && pickedUpItem.name == "Rag")
             {
